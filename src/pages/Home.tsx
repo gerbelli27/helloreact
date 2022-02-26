@@ -8,7 +8,6 @@ import '../styles/auth.css'
 import { Button } from '../components/Button'
 import { useContext } from "react";
 
-
 export function Home(){
   let navigate = useNavigate();
   const { user, signInWithGoogle } = useContext(AuthContext)
