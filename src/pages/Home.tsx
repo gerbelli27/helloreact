@@ -1,16 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { AuthContext } from "../App";
 import illustrationImg from '../assets/images/illustration.svg'
 import logoImg from '../assets/images/logo.svg'
 import googleIcon from '../assets/images/google-icon.svg'
 import '../styles/auth.css'
 import { Button } from '../components/Button'
-import { useContext } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 export function Home(){
   let navigate = useNavigate();
-  const { user, signInWithGoogle } = useContext(AuthContext)
+  const { user, signInWithGoogle } = useAuth()
 
   function createRoom(){
    if(!user){
