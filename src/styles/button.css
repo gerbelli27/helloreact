@@ -1,4 +1,4 @@
-button{
+.button{
   height: 50px;
   border-radius: 8px;
   font-weight: 500px;
@@ -16,15 +16,15 @@ button{
   transition: filter 0.2s;
 }
 
-button:not(:disabled):hover{
+.button:not(:disabled):hover{
   filter: brightness(0.9);
 }
 
-button img{
+.button img{
   margin-right: 8px;
 }
 
-button:disabled{
+.button:disabled{
   opacity: 0.6;
   cursor: not-allowed;
 }

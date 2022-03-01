@@ -6,23 +6,33 @@
   border: 1px solid #835afd;
   cursor: pointer;
   display: flex;
-
+  justify-content: center;
+  align-items: center;
+  padding-left: 0;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .room-code div{
   background: #835afd;
   padding: 0 12px;
+  width: 30px;
+  height: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  
 }
 
-.room-code spam{
+.span1{
   display: block;
   align-self: center;
   flex: 1;
   padding: 0 16px 0 12px;
-  width: 230px;
-  font-size: 12px;
+  width: 200px;
+  font-size: 14px;
   font-weight: 500;
+  background-color: #fff;
+  padding-left: 8px;
+  color: #835afd;
 }

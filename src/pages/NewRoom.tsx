@@ -28,7 +28,7 @@ export function NewRoom() {
       title: newRoom,
       authorId: user?.id,
     };
-    const roomRef = push(child(ref(firebaseRoom), 'rooms')).key;
+    const roomRef = push(child(ref(firebaseRoom), 'rooms/')).key;
     const updates = {};
     
     updates['/rooms/' + roomRef] = dataRoom;
