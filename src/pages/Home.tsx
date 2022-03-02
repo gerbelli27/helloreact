@@ -7,6 +7,7 @@ import '../styles/auth.css'
 import { Button } from '../components/Button'
 import { useAuth } from "../hooks/useAuth";
 import { getDatabase, set, ref, child, get } from "firebase/database";
+import { toast, Toaster } from "react-hot-toast";
 
 
 
@@ -27,22 +28,26 @@ export function Home() {
     if (roomCode.trim() === '') {
       return;
     }
-const roomRef = ref(getDatabase());
-get(child(roomRef, `rooms/${roomCode}`)).then((roomCode) => {
-  if (roomCode.exists()) {
-    navigate(`/rooms/${roomCode.key}`)
-  } else {
-    alert("room unavaiable");
-  }
-}).catch((error) => {
-  console.error(error);
-});
-    
+    const roomRef = ref(getDatabase());
+    get(child(roomRef, `rooms/${roomCode}`)).then((roomCode) => {
+      if (roomCode.exists()) {
+        navigate(`/rooms/${roomCode.key}`)
+      } else {
+        toast.error("room unavaiable");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+
   }
 
-  
+
   return (
     <div id="page-auth" >
+      <Toaster
+        position="bottom-center"
+        reverseOrder={true}
+      />
       <aside>
         <img src={illustrationImg} alt="illustration ask" />
         <strong>Answer your audience</strong>
