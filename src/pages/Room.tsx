@@ -1,4 +1,3 @@
-import { async } from '@firebase/util';
 import { FormEvent, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import logoImg from '../assets/images/logo.svg';
@@ -45,7 +44,7 @@ export function Room() {
       isAnswered: false,
     });
     
-   
+   setNewQuestion('')
    // navigate(`/rooms/${roomRef}`);
 
   }
@@ -73,8 +72,13 @@ export function Room() {
             value={newQuestion}
           />
           <div className="form-footer" >
-            <button className="log-in" disabled={!user} >Log in</button><span>to ask questions</span>
-            <Button type="submit">Send question</Button>
+          { user ? (
+              <div className="user-info">
+                <img src={user.avatar} alt={user.name} />
+                <span className="username">{user.name}</span>
+              </div>
+            ) : ( <span className="username1"><a className="log-in">Log in</a>to ask questions</span>)}
+            <button className="btn"type="submit" disabled={!user} >Send question</button>
           </div>
         </form>
       </main>

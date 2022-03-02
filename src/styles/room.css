@@ -71,24 +71,70 @@ form button {
   justify-content: space-between;
 }
 
-.form-footer span {
+.username1 {
   font-size: 14px;
   color: #737380;
   font-weight: 500;
   width: 100%;
   display: flex;
-  align-items: center;
+  
   margin-top: 16px;
 }
 
 .log-in{
-  box-sizing: border-box;
-  background: transparent;
-  border: 0;
   color: #835AFD;
   text-decoration: underline;
   font-size: 14px;
   cursor: pointer;
   font-weight: 500;
-  width: 80px;
+  width: 45px;
+}
+
+.user-info{
+  display: flex;
+  align-items: center;
+}
+
+.user-info img{
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+}
+
+.username{
+  margin-left: 8px;
+  color: #29292e;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.btn{
+  height: 50px;
+  border-radius: 8px;
+  font-weight: 500px;
+  background: #835afd;
+  color: #fff;
+  padding: 0 32px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  border: 0;
+
+  transition: filter 0.2s;
+}
+
+.btn:not(:disabled):hover{
+  filter: brightness(0.9);
+}
+
+.btn img{
+  margin-right: 8px;
+}
+
+.btn:disabled{
+  opacity: 0.6;
+  cursor: not-allowed;
 }
