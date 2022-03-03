@@ -1,4 +1,4 @@
-.room-code{
+.room-code {
   height: 40px;
   border-radius: 8px;
   overflow: hidden;
@@ -11,6 +11,7 @@
   padding-left: 0;
   padding-top: 0;
   padding-bottom: 0;
+  width: 300px;
 }
 
 .room-code div{
@@ -29,7 +30,7 @@
   align-self: center;
   flex: 1;
   padding: 0 16px 0 12px;
-  width: 200px;
+  width: 350px;
   font-size: 14px;
   font-weight: 500;
   background-color: #fff;

@@ -1,0 +1,35 @@
+.question{
+  background: #fefefe;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  padding: 12px;
+  margin-bottom: 8px;
+}
+
+.question p {
+  color: #29292e
+}
+
+.question footer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.user-info{
+  display: flex;
+  align-items: center;
+}
+
+.user-info img{
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+}
+
+.username{
+  margin-left: 8px;
+  color: #737380;
+  font-size: 14px;
+}

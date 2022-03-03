@@ -25,7 +25,7 @@ header{
 }
 
 .room-title{
-  margin: 32px 0 24px;
+  margin: 32px 0 6px;
   display: flex;
   align-items: center;
 }
@@ -137,4 +137,37 @@ form button {
 .btn:disabled{
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+.question-list{
+  margin-top: 32px;
+  width: 100%;
+}
+
+.close-room{
+  display: flex;
+  gap: 16px;
+}
+
+
+
+.btn-close{
+  width: 130px;
+  height: 40px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  background: #fff;
+  color: #835afd;
+  padding: 0 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid #835afd;
+  transition: filter 0.2s;
+}
+
+.btn-close:hover{
+  filter: brightness(0.9);
 }
