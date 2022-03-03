@@ -1,7 +1,7 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import logoImg from '../assets/images/logo.svg';
-import { getDatabase, set, ref, child, push } from "firebase/database";
+import { getDatabase, set, ref, child, push, onValue } from "firebase/database";
 import { Button } from '../components/Button';
 import { RoomCode } from '../components/RoomCode';
 import { useAuth } from '../hooks/useAuth';
@@ -14,11 +14,56 @@ type RoomParams = {
   id: string;
 }
 
+type FirebaseQuestions = Record<string, {
+  author: {
+    name: string;
+    avatar: string;
+  }
+  content: string;
+  isAnswered: boolean
+  isHighlighted: boolean;
+}>
+
+type Question = {
+  id: string;
+  author: {
+    name: string;
+    avatar: string;
+  }
+  content: string;
+  isAnswered: boolean
+  isHighlighted: boolean;
+}
+
+
 export function Room() {
   const { user } = useAuth();
   const params = useParams<RoomParams>();
   const roomId = params.id;
   const [newQuestion, setNewQuestion] = useState('');
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [title, setTitle] = useState('');
+  const db = getDatabase();
+
+  useEffect(() => {
+
+    const roomRef = ref(db, '/rooms/' + roomId)
+    onValue(roomRef, (room) => {
+      const dataRoom = room.val();
+      const firebaseQuestions: FirebaseQuestions = dataRoom.questions ?? {};
+      const parsedQuestions = Object.entries(firebaseQuestions).map(([key, value]) => {
+        return {
+          id: key,
+          content: value.content,
+          author: value.author,
+          isHighlighted: value.isHighlighted,
+          isAnswered: value.isAnswered,
+        }
+      })
+      setTitle(dataRoom.title)
+      setQuestions(parsedQuestions)
+    });
+  }, [roomId]);
 
 
   async function handleSendQuestion(event: FormEvent) {
@@ -32,7 +77,7 @@ export function Room() {
       throw new Error('you must be logged in')
     }
 
-    const db = getDatabase();
+
     const newKeyQuestion = push(child(ref(db), 'rooms/')).key;
     set(ref(db, '/rooms/' + roomId + '/questions/' + newKeyQuestion), {
       content: newQuestion,
@@ -43,9 +88,9 @@ export function Room() {
       isHighlighted: false,
       isAnswered: false,
     });
-    
-   setNewQuestion('')
-   // navigate(`/rooms/${roomRef}`);
+
+    setNewQuestion('')
+    // navigate(`/rooms/${roomRef}`);
 
   }
 
@@ -62,8 +107,8 @@ export function Room() {
 
       <main className="main">
         <div className="room-title" >
-          <h1>Room name</h1>
-          <span>4 questions</span>
+          <h1>Room {title}</h1>
+          {questions.length > 0 && <span>{questions.length} question(s)</span>}
         </div>
         <form onSubmit={handleSendQuestion}>
           <textarea
@@ -72,15 +117,16 @@ export function Room() {
             value={newQuestion}
           />
           <div className="form-footer" >
-          { user ? (
+            {user ? (
               <div className="user-info">
                 <img src={user.avatar} alt={user.name} />
                 <span className="username">{user.name}</span>
               </div>
-            ) : ( <span className="username1"><a className="log-in">Log in</a>to ask questions</span>)}
-            <button className="btn"type="submit" disabled={!user} >Send question</button>
+            ) : (<span className="username1"><a className="log-in">Log in</a>to ask questions</span>)}
+            <button className="btn" type="submit" disabled={!user} >Send question</button>
           </div>
         </form>
+        {JSON.stringify(questions)}
       </main>
 
     </div>
