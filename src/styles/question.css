@@ -33,3 +33,9 @@
   color: #737380;
   font-size: 14px;
 }
+
+button{
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
