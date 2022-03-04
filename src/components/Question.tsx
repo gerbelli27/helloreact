@@ -11,21 +11,16 @@ type QuestionProps = {
 
 import '../styles/question.css';
 
-export function Question({
-  content,
-  author,
-  children
-}: QuestionProps){
+export function Question(props: QuestionProps){
   return (
     <div className="question">
-      <p>{content}</p>
+      <p>{props.content}</p>
       <footer>
         <div className="user-info">
-          <img src={author.avatar} alt={author.name} />
-          <span className="username">{author.name}</span>
+          <img src={props.author.avatar} alt={props.author.name} />
+          <span className="username">{props.author.name}</span>
         </div>
         <div>
-          {children}
         </div>
       </footer>
     </div>
