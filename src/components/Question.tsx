@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import '../styles/question.css';
 
 type QuestionProps = {
   content: string;
@@ -9,19 +10,20 @@ type QuestionProps = {
   children?: ReactNode;
 }
 
-import '../styles/question.css';
-
-export function Question(props: QuestionProps){
+export function Question({
+  content,
+  author,
+  children,
+}: QuestionProps) {
   return (
     <div className="question">
-      <p>{props.content}</p>
+      <p>{content}</p>
       <footer>
         <div className="user-info">
-          <img src={props.author.avatar} alt={props.author.name} />
-          <span className="username">{props.author.name}</span>
+          <img src={author.avatar} alt={author.name} />
+          <span className="username">{author.name}</span>
         </div>
-        <div>
-        </div>
+        <div>{children}</div>
       </footer>
     </div>
   );

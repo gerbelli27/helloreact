@@ -39,3 +39,23 @@ button{
   background: transparent;
   border: 0;
 }
+
+.like-button{
+  display: flex;
+  align-items: flex-end;
+  color: #737380;
+  gap: 8px;
+  transition: filter 0.2s;
+}
+
+.like-button:hover{
+  filter: brightness(0.7);
+}
+
+.liked{
+  color: #835afd;
+}
+
+svg path{
+  stroke: #835afd;
+}
