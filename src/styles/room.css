@@ -101,13 +101,6 @@ form button {
   height: 32px;
 }
 
-.username{
-  margin-left: 8px;
-  color: #29292e;
-  font-size: 14px;
-  font-weight: 500;
-}
-
 .btn{
   height: 50px;
   border-radius: 8px;
@@ -148,8 +141,6 @@ form button {
   display: flex;
   gap: 16px;
 }
-
-
 
 .btn-close{
   width: 130px;
