@@ -31,7 +31,7 @@ export function Room() {
       set(ref(db, '/rooms/' + roomId + '/questions/' + questionId + '/likes/' + newKeyLike), {
         authorId: user?.id,
       })
-    }console.log(likeId)
+    }
   }
 
   async function handleSendQuestion(event: FormEvent) {
