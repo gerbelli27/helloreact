@@ -57,8 +57,7 @@ export function Room() {
     });
 
     setNewQuestion('')
-    // navigate(`/rooms/${roomRef}`);
-
+  
   }
 
   return (

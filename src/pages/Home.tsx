@@ -30,11 +30,19 @@ export function Home() {
     }
     const roomRef = ref(getDatabase());
     get(child(roomRef, `rooms/${roomCode}`)).then((roomCode) => {
-      if (roomCode.exists()) {
-        navigate(`/rooms/${roomCode.key}`)
-      } else {
-        toast.error("room unavaiable");
+      if (!roomCode.exists()) {
+        toast.error("Room does not exist")
+        return;
+      } 
+      if (roomCode.val().endedAt){
+        toast.error('Room already closed')
+        return;
       }
+      if (roomCode.exists()){
+        navigate(`/rooms/${roomCode.key}`)
+        return;
+      }
+
     }).catch((error) => {
       console.error(error);
     });

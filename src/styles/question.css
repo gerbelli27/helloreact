@@ -54,6 +54,7 @@ button{
 
 .liked{
   color: #835afd;
+  filter: brightness(0.7);
 }
 
 svg path{

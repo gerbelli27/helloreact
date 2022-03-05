@@ -1,11 +1,15 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import logoImg from '../assets/images/logo.svg';
+import deleteImg from '../assets/images/delete.svg'
 import { RoomCode } from '../components/RoomCode';
 import { Question } from '../components/Question';
 
 import '../styles/room.css';
 import { useRoom } from '../hooks/useRoom';
 import { Button } from '../components/Button';
+import { getDatabase, ref, remove, update } from "firebase/database";
+
+
 
 type RoomParams = {
   id: string;
@@ -16,6 +20,21 @@ export function AdminRoom() {
   const params = useParams<RoomParams>();
   const roomId = params.id;
   const { title, questions } = useRoom(roomId)
+  const db = getDatabase();
+  const navigate = useNavigate();
+
+  async function handleEndRoom(){
+    update(ref(db, '/rooms/' + roomId), {
+      endedAt: new Date(),
+    })
+    navigate('/');
+  }
+
+  async function handleDeleteQuestion(questionId: string) {
+    if (window.confirm('Are you sure you want to delete this ?')) {
+      remove(ref(db, '/rooms/' + roomId + '/questions/' + questionId))
+    }
+  }
 
   return (
     <div id="page-room">
@@ -24,7 +43,10 @@ export function AdminRoom() {
           <img src={logoImg} alt="letmeask logo" />
           <div className="close-room">
             <RoomCode code={roomId} />
-            <Button className="btn-close">Close Room</Button>
+            <Button 
+            className="btn-close"
+            onClick={handleEndRoom}
+            >Close Room</Button>
           </div>
         </div>
       </header>
@@ -41,7 +63,15 @@ export function AdminRoom() {
                 key={question.id}
                 content={question.content}
                 author={question.author}
-              />
+              >
+
+                <button type="button"
+                  onClick={() => handleDeleteQuestion(question.id)}>
+                  <img src={deleteImg} alt="remove question" />
+                </button>
+              </Question>
+
+
             );
           })}
         </div>
