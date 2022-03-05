@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import logoImg from '../assets/images/logo.svg';
-import { getDatabase, set, ref, child, push } from "firebase/database";
+import { getDatabase, set, ref, child, push, remove } from "firebase/database";
 import { RoomCode } from '../components/RoomCode';
 import { useAuth } from '../hooks/useAuth';
 import { Question } from '../components/Question';
@@ -23,12 +23,15 @@ export function Room() {
 
 
   
-  async function handleLikeQuestions(questionId: string, hasLiked: boolean){
-    const newKeyLike = push(child(ref(db), 'questions/')).key;
-    set(ref(db, '/rooms/' + roomId + '/questions/' + questionId + '/likes/' + newKeyLike), {
-      authorId: user?.id,
-    })
-    
+  async function handleLikeQuestions(likeId: string | undefined, questionId: string){
+    if (likeId) {
+      remove(ref(db, '/rooms/' + roomId + '/questions/' + questionId + '/likes/' + likeId))
+    } else {
+      const newKeyLike = push(child(ref(db), 'questions/')).key;
+      set(ref(db, '/rooms/' + roomId + '/questions/' + questionId + '/likes/' + newKeyLike), {
+        authorId: user?.id,
+      })
+    }console.log(likeId)
   }
 
   async function handleSendQuestion(event: FormEvent) {
@@ -97,10 +100,10 @@ export function Room() {
                 author={question.author}
               >
                 <button 
-                  className={`like-button ${question.hasLiked ? 'liked': ''}`}
+                  className={`like-button ${question.likeId ? 'liked': ''}`}
                   type="button"
                   aria-label="I like"
-                  onClick={()=> handleLikeQuestions(question.id, question.hasLiked)}
+                  onClick={()=> handleLikeQuestions(question.likeId, question.id)}
                 >
                  {question.likeCount > 0 && <span>{question.likeCount}</span>} 
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

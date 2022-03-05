@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getDatabase, ref, onValue, off } from "firebase/database";
+import { getDatabase, ref, onValue } from "firebase/database";
 import { useAuth } from '../hooks/useAuth';
 
 type Question = {
@@ -12,7 +12,7 @@ type Question = {
   isAnswered: boolean
   isHighlighted: boolean;
   likeCount: number;
-  hasLiked: boolean;
+  likeId: string;
 }
 
 type FirebaseQuestions = Record<string, {
@@ -23,9 +23,9 @@ type FirebaseQuestions = Record<string, {
   content: string;
   isAnswered: boolean
   isHighlighted: boolean;
-  likes: {
+  likes: Record<string,{
     authorId: string;
-  }
+  }>
 }>
 
 export function useRoom(roomId: string){
@@ -47,7 +47,8 @@ export function useRoom(roomId: string){
           isHighlighted: value.isHighlighted,
           isAnswered: value.isAnswered,
           likeCount: Object.values(value.likes  ?? {}).length,
-          hasLiked: Object.values(value.likes ?? {}).some(like => like.authorId === user?.id)
+          likeId: Object.entries(value.likes ?? {}).find(([key, like]) => like.authorId === user?.id)?.[0],
+          
         }
       })
       setTitle(dataRoom.title)
