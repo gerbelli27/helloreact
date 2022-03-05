@@ -6,7 +6,7 @@ import googleIcon from '../assets/images/google-icon.svg'
 import '../styles/auth.css'
 import { Button } from '../components/Button'
 import { useAuth } from "../hooks/useAuth";
-import { getDatabase, set, ref, child, get } from "firebase/database";
+import { getDatabase, ref, child, get } from "firebase/database";
 import { toast, Toaster } from "react-hot-toast";
 
 
