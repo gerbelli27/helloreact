@@ -9,8 +9,6 @@ import { useAuth } from "../hooks/useAuth";
 import { getDatabase, ref, child, get } from "firebase/database";
 import { toast, Toaster } from "react-hot-toast";
 
-
-
 export function Home() {
   let navigate = useNavigate();
   const { user, signInWithGoogle } = useAuth();
