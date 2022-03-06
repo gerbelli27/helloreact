@@ -167,10 +167,13 @@ form button {
 @media  screen and (max-width:768px) {
   .content{
     max-width: 768px;
-    margin: 0 auto;
-    display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
+    gap: 12px;
+}
+.close-room{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 }
