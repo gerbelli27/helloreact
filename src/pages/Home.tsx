@@ -33,12 +33,12 @@ export function Home() {
       if (!roomCode.exists()) {
         toast.error("Room does not exist!")
         return;
-      } 
-      if (roomCode.val().endedAt){
+      }
+      if (roomCode.val().endedAt) {
         toast.error('Room already closed!')
         return;
       }
-      if (roomCode.exists()){
+      if (roomCode.exists()) {
         navigate(`/rooms/${roomCode.key}`)
         return;
       }
@@ -59,11 +59,15 @@ export function Home() {
       <aside>
         <img src={illustrationImg} alt="illustration ask" />
         <strong>Answer your audience</strong>
-        <p>answer your community in real time</p>
+        <p>Real time answer your community.</p>
       </aside>
       <main>
         <div className="main-content">
           <img src={logoImg} alt="letmeask" />
+          <div className="container">
+            <strong className="title">Answer your audience</strong>
+            <p className="subtitle">answer your community in real time</p>
+          </div>
           <button onClick={createRoom} className="btn-create-room">
             <img src={googleIcon} alt="google logo" />
             Create your room
