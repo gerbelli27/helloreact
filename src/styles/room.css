@@ -163,3 +163,14 @@ form button {
 .btn-close:hover{
   filter: brightness(0.9);
 }
+
+@media  screen and (max-width:768px) {
+  .content{
+    max-width: 768px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+}
