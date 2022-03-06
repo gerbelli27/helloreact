@@ -1,10 +1,11 @@
 import { FormEvent, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import logoImg from '../assets/images/logo.svg';
-import { getDatabase, set, ref, child, push, remove } from "firebase/database";
+import { getDatabase, set, ref, child, push, remove, get } from "firebase/database";
 import { RoomCode } from '../components/RoomCode';
 import { useAuth } from '../hooks/useAuth';
 import { Question } from '../components/Question';
+import { toast, Toaster} from 'react-hot-toast';
 
 import '../styles/room.css';
 import { useRoom } from '../hooks/useRoom';
@@ -20,9 +21,7 @@ export function Room() {
   const roomId = params.id;
   const { title, questions } = useRoom(roomId);
   const db = getDatabase();
-
-
-
+  
   async function handleLikeQuestions(likeId: string | undefined, questionId: string) {
     if (likeId) {
       remove(ref(db, '/rooms/' + roomId + '/questions/' + questionId + '/likes/' + likeId))
@@ -36,7 +35,7 @@ export function Room() {
 
   async function handleSendQuestion(event: FormEvent) {
     event.preventDefault();
-
+   
     if (newQuestion.trim() === '') {
       return;
     }
@@ -68,7 +67,6 @@ export function Room() {
           <RoomCode code={roomId} />
         </div>
       </header>
-
       <main className="main">
         <div className="room-title" >
           <h1>Room {title}</h1>

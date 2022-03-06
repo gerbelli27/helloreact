@@ -11,18 +11,18 @@
   padding-left: 0;
   padding-top: 0;
   padding-bottom: 0;
-  width: 300px;
+  max-width: 300px;
+  width: auto;
 }
 
 .room-code div{
   background: #835afd;
   padding: 0 12px;
-  width: 30px;
-  height: 100%;
+  width: 20px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  
 }
 
 .span1{
@@ -30,7 +30,8 @@
   align-self: center;
   flex: 1;
   padding: 0 16px 0 12px;
-  width: 350px;
+  max-width: 350px;
+  width: auto;
   font-size: 14px;
   font-weight: 500;
   background-color: #fff;
