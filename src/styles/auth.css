@@ -142,6 +142,22 @@ form button{
     display: none;
   }
 
+  .user-logout{
+    width: 25px;
+    height: 25px;
+  }
+  .user-avatar{
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+  }
+  .user-info2{
+    align-self: center;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
   @media screen and (max-width: 768px) {
     #page-auth {
       flex-direction: column;
@@ -162,6 +178,5 @@ form button{
     .subtitle {
       color: #a8a8b3;
     }
-   
 
   }

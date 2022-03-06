@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import illustrationImg from '../assets/images/illustration.svg'
 import logoImg from '../assets/images/logo.svg'
+import logOut from '../assets/images/logout.svg'
 
 import { Button } from '../components/Button'
 import { useAuth } from '../hooks/useAuth';
@@ -22,7 +23,7 @@ export function NewRoom() {
     if (newRoom.trim() === '') {
       return;
     }
-//push room and data
+    //push room and data
     const firebaseRoom = getDatabase();
     const dataRoom = {
       title: newRoom,
@@ -30,11 +31,11 @@ export function NewRoom() {
     };
     const roomRef = push(child(ref(firebaseRoom), 'rooms/')).key;
     const updates = {};
-    
+
     updates['/rooms/' + roomRef] = dataRoom;
-   
+
     navigate(`/admin/rooms/${roomRef}`);
-    
+
     return update(ref(firebaseRoom), updates);
   }
 
@@ -48,9 +49,12 @@ export function NewRoom() {
       <main>
         <div className="main-content">
           <img src={logoImg} alt="letmeask" />
-          <h1>{user?.name}</h1>
+          <div className="user-info2">
+            <img className="user-avatar" src={user?.avatar} alt="User avatar" />
+            <h1>{user?.name}</h1>
+            <img className="user-logout" src={logOut} alt="log out" />
+          </div>
           <h2>Create a new room</h2>
-
           <form onSubmit={handleCreateRoom}>
             <input
               type="text"
@@ -59,10 +63,10 @@ export function NewRoom() {
               value={newRoom}
             />
             <Button type="submit">
-              Create room
+              Create a room
             </Button>
           </form>
-          <p className="txt-p">Do you want to enter a room? <Link to="/">Click here</Link></p>
+          <p className="txt-p">if you want to join a open room <Link to="/">Click here</Link></p>
         </div>
       </main>
     </div>
