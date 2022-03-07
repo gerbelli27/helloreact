@@ -3,8 +3,11 @@ import logoImg from '../assets/images/logo.svg';
 import deleteImg from '../assets/images/delete.svg'
 import checkImg from '../assets/images/check.svg'
 import answerImg from '../assets/images/answer.svg'
+import likeImg from '../assets/images/like.svg'
+import emptyQuestions from '../assets/images/empty-questions.svg'
 import { RoomCode } from '../components/RoomCode';
 import { Question } from '../components/Question';
+
 
 import '../styles/room.css';
 import { useRoom } from '../hooks/useRoom';
@@ -56,13 +59,14 @@ export function AdminRoom() {
     <div id="page-room">
       <header>
         <div className="content">
-          <img src={logoImg} alt="letmeask logo" />
+          <img className="logo-img" src={logoImg} alt="letmeask logo" />
           <div className="close-room">
             <RoomCode code={roomId} />
             <Button 
             className="btn-close"
             onClick={handleEndRoom}
-            >Close Room</Button>
+            > Close Room
+            </Button>
           </div>
         </div>
       </header>
@@ -71,8 +75,10 @@ export function AdminRoom() {
           <h1>Room {title}</h1>
           {questions.length > 0 && <span>{questions.length} question(s)</span>}
         </div>
-
         <div className="question-list">
+        <div className="question-empty">
+        {questions.length == 0 && <img className="image-empty" src={ emptyQuestions } alt="No questions yet" /> }
+        </div>
           {questions.map(question => {
             return (
               <Question
@@ -84,6 +90,8 @@ export function AdminRoom() {
               >
                 {!question.isAnswered && (
                    <>
+                   {question.likeCount > 0 && <span>{question.likeCount}</span>}
+                   <img src={ likeImg } alt="number of likes" />
                    <button type="button"
                    onClick={() => handleCheckQuestionAsAnswered(question.id)}>
                    <img src={checkImg} alt="Highlight question" />
