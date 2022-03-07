@@ -12,7 +12,14 @@ header{
     align-items: center;
 }
 
-#page-room img {
+.image-empty{
+  width: 400px; 
+  align-self: center;
+  justify-self: center;
+  align-self: center;
+}
+
+.logo-img {
   max-height: 45px;
 }
 
@@ -134,7 +141,7 @@ form button {
 }
 
 .question-list{
-  margin-top: 32px;
+  margin-top: 50px;
   width: 100%;
 }
 
@@ -164,6 +171,7 @@ form button {
   filter: brightness(0.9);
 }
 
+
 @media  screen and (max-width:768px) {
   .content{
     max-width: auto;
@@ -180,6 +188,10 @@ form button {
 .btn{
   height: 50px;
   max-width: 170px;
+}
+
+.image-empty{
+  width: 200px; 
 }
 
 }

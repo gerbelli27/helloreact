@@ -37,6 +37,7 @@ export function Room() {
     event.preventDefault();
 
     if (newQuestion.trim() === '') {
+      toast.error('Ask your question!')
       return;
     }
     const roomRef = ref(getDatabase());

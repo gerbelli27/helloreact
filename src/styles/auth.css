@@ -2,7 +2,6 @@
   display: flex;
   align-items: stretch;
   height: 100vh;
-
 }
 
 aside{
@@ -17,7 +16,7 @@ aside{
   padding: 120px 80px;
 }
 
-img{
+.img-big-home{
   max-width: 320px;
 }
 
@@ -53,8 +52,9 @@ main{
   text-align: center;
 }
 
-.main-content img{
+.main-logo{
   align-self: center;
+  width: 200px;
 }
 
 h2{

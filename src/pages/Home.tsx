@@ -54,13 +54,13 @@ export function Home() {
         reverseOrder={true}
       />
       <aside>
-        <img src={illustrationImg} alt="illustration ask" />
+        <img className="img-big-home"  src={illustrationImg} alt="illustration ask" />
         <strong>Answer your audience</strong>
         <p>Real time answer your community.</p>
       </aside>
       <main>
         <div className="main-content">
-          <img src={logoImg} alt="letmeask" />
+          <img  className="main-logo" src={logoImg} alt="letmeask" />
           <div className="container">
             <strong className="title">Answer your audience</strong>
             <p className="subtitle">answer your community in real time</p>

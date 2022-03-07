@@ -6,6 +6,11 @@
   margin-bottom: 8px;
 }
 
+.question-empty{
+  display: flex;
+  justify-content: center;
+}
+
 .question p {
   color: #29292e
 }
