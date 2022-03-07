@@ -20,10 +20,10 @@ export const AuthContext = createContext({} as AuthContextType)
 
 export function AuthContextProvider(props: AuthContextProviderProps){
     const [user, setUser] = useState<User>(); 
-    
     useEffect(() =>{
-    const auth = getAuth();
-    const unsubscribe = auth.onAuthStateChanged(user =>{
+
+      const auth = getAuth();
+       const unsubscribe = auth.onAuthStateChanged(user =>{
      
       if(user){
         const { displayName, photoURL, uid } = user
@@ -42,7 +42,7 @@ export function AuthContextProvider(props: AuthContextProviderProps){
       unsubscribe();
     }
   }, [])
-  
+   
   function signInWithGoogle(){
     const provider = new GoogleAuthProvider();
         const auth = getAuth();
