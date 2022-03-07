@@ -26,7 +26,9 @@ export function AdminRoom() {
   const navigate = useNavigate();
 
   async function handleEndRoom(){
-    remove(ref(db, '/rooms/' + roomId))
+    update(ref(db, '/rooms/' + roomId), {
+      endedAt: new Date(),
+    })
     navigate('/');
   }
 

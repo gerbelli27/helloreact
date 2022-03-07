@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import logoImg from '../assets/images/logo.svg';
-import { getDatabase, set, ref, child, push, remove, get } from "firebase/database";
+import { getDatabase, set, ref, child, push, remove, get, update } from "firebase/database";
 import { RoomCode } from '../components/RoomCode';
 import { useAuth } from '../hooks/useAuth';
 import { Question } from '../components/Question';
@@ -22,6 +22,7 @@ export function Room() {
   const { title, questions } = useRoom(roomId);
   const db = getDatabase();
   
+  
   async function handleLikeQuestions(likeId: string | undefined, questionId: string) {
     if (likeId) {
       remove(ref(db, '/rooms/' + roomId + '/questions/' + questionId + '/likes/' + likeId))
@@ -37,8 +38,10 @@ export function Room() {
     event.preventDefault();
    
     if (newQuestion.trim() === '') {
-      return;
+      return
     }
+
+    
 
     if (!user) {
       throw new Error('you must be logged in')
