@@ -5,6 +5,7 @@ import { getDatabase, set, ref, child, push, remove, get } from "firebase/databa
 import { RoomCode } from '../components/RoomCode';
 import { useAuth } from '../hooks/useAuth';
 import { Question } from '../components/Question';
+import { toast, Toaster } from "react-hot-toast";
 
 import '../styles/room.css';
 import { useRoom } from '../hooks/useRoom';
@@ -41,6 +42,7 @@ export function Room() {
     const roomRef = ref(getDatabase());
     get(child(roomRef, `rooms/${roomId}`)).then((roomCode) => {
       if (roomCode.val().endedAt) {
+        toast.error('Room is now closed!')
         return;
       }
       if (roomCode.exists()) {
@@ -65,6 +67,10 @@ export function Room() {
 
   return (
     <div id="page-room">
+      <Toaster
+        position="top-center"
+        reverseOrder={true}
+      />
       <header>
         <div className="content">
           <img src={logoImg} alt="letmeask logo" />
