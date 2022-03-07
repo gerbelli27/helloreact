@@ -7,7 +7,7 @@ import likeImg from '../assets/images/like.svg'
 import emptyQuestions from '../assets/images/empty-questions.svg'
 import { RoomCode } from '../components/RoomCode';
 import { Question } from '../components/Question';
-
+import ReactTooltip from 'react-tooltip';
 
 import '../styles/room.css';
 import { useRoom } from '../hooks/useRoom';
@@ -21,7 +21,7 @@ type RoomParams = {
 }
 
 export function AdminRoom() {
-  //const { user } = useAuth();
+
   const params = useParams<RoomParams>();
   const roomId = params.id;
   const { title, questions } = useRoom(roomId)
@@ -57,7 +57,10 @@ export function AdminRoom() {
 
   return (
     <div id="page-room">
+       <ReactTooltip id='custom-color-no-arrow' className='custom-color-no-arrow' 
+textColor='#fff' backgroundColor='#a48af5' effect='solid'/>  
       <header>
+        
         <div className="content">
           <img className="logo-img" src={logoImg} alt="letmeask logo" />
           <div className="close-room">
@@ -90,19 +93,26 @@ export function AdminRoom() {
               >
                 {!question.isAnswered && (
                    <>
+                    <ReactTooltip id='custom-color-no-arrow' className='custom-color-no-arrow' delayHide={1000}
+textColor='#fff' backgroundColor='#a48af5' effect='solid'/>
                    {question.likeCount > 0 && <span>{question.likeCount}</span>}
                    <img src={ likeImg } alt="number of likes" />
                    <button type="button"
+                   data-for='custom-color-no-arrow' data-tip='Mark question as answered'
                    onClick={() => handleCheckQuestionAsAnswered(question.id)}>
-                   <img src={checkImg} alt="Highlight question" />
+                   <img src={answerImg} alt="Mark question as answered" />
                  </button>
                   <button type="button"
+                  data-for='custom-color-no-arrow' data-tip='Highlight question'
                    onClick={() => handleHighLightQuestion(question.id)}>
-                   <img src={answerImg} alt="Mark question as answered" />
+                   <img src={checkImg} alt="Mark question as answered" />
                  </button>
                  </>
                 )}
+                 <ReactTooltip id='custom-color-no-arrow' className='custom-color-no-arrow' delayHide={1000}
+textColor='#fff' backgroundColor='#a48af5' effect='solid'/>
                 <button type="button"
+                  data-for='custom-color-no-arrow' data-tip='Remove question'
                   onClick={() => handleDeleteQuestion(question.id)}>
                   <img src={deleteImg} alt="Remove question" />
                 </button>
