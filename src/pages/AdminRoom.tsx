@@ -8,11 +8,11 @@ import emptyQuestions from '../assets/images/empty-questions.svg'
 import { RoomCode } from '../components/RoomCode';
 import { Question } from '../components/Question';
 import ReactTooltip from 'react-tooltip';
-
 import '../styles/room.css';
 import { useRoom } from '../hooks/useRoom';
 import { Button } from '../components/Button';
 import { getDatabase, ref, remove, update } from "firebase/database";
+import { useEffect } from "react";
 
 
 
@@ -29,10 +29,13 @@ export function AdminRoom() {
   const navigate = useNavigate();
 
   async function handleEndRoom(){
+    
     update(ref(db, '/rooms/' + roomId), {
       endedAt: new Date(),
     })
+ 
     navigate('/');
+
   }
 
   async function handleDeleteQuestion(questionId: string) {

@@ -1,4 +1,4 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { createContext, useState, useEffect, ReactNode } from "react";
 
 type User = {
@@ -42,7 +42,7 @@ export function AuthContextProvider(props: AuthContextProviderProps){
       unsubscribe();
     }
   }, [])
-   
+
   function signInWithGoogle(){
     const provider = new GoogleAuthProvider();
         const auth = getAuth();

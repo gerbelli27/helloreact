@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 import illustrationImg from '../assets/images/illustration.svg'
 import logoImg from '../assets/images/logo.svg'
-import logOut from '../assets/images/logout.svg'
 
 import { Button } from '../components/Button'
 import { useAuth } from '../hooks/useAuth';
@@ -39,6 +38,8 @@ export function NewRoom() {
     return update(ref(firebaseRoom), updates);
   }
 
+
+
   return (
     <div id="page-auth" >
       <aside>
@@ -52,7 +53,6 @@ export function NewRoom() {
           <div className="user-info2">
             <img className="user-avatar" src={user?.avatar} alt="User avatar" />
             <h1 className="user-name">{user?.name}</h1>
-            <img className="user-logout" src={logOut} alt="log out" />
           </div>
           <h2>Create a new room</h2>
           <form onSubmit={handleCreateRoom}>
