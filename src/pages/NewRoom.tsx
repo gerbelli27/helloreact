@@ -42,16 +42,16 @@ export function NewRoom() {
   return (
     <div id="page-auth" >
       <aside>
-        <img src={illustrationImg} alt="illustration ask" />
+        <img className="img-big-home" src={illustrationImg} alt="illustration ask" />
         <strong>Answer your audience</strong>
-        <p>answer your community in real time</p>
+        <p>Real time answer your community.</p>
       </aside>
       <main>
         <div className="main-content">
-          <img src={logoImg} alt="letmeask" />
+          <img className="main-logo" src={logoImg} alt="letmeask" />
           <div className="user-info2">
             <img className="user-avatar" src={user?.avatar} alt="User avatar" />
-            <h1>{user?.name}</h1>
+            <h1 className="user-name">{user?.name}</h1>
             <img className="user-logout" src={logOut} alt="log out" />
           </div>
           <h2>Create a new room</h2>
