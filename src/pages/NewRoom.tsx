@@ -1,6 +1,6 @@
 
 import { FormEvent, useState } from 'react'
-import { getDatabase, ref, child, push, update } from "firebase/database";
+import { getDatabase, ref, child, push, update, set } from "firebase/database";
 import { Link, useNavigate } from "react-router-dom";
 
 import illustrationImg from '../assets/images/illustration.svg'
@@ -22,20 +22,15 @@ export function NewRoom() {
     if (newRoom.trim() === '') {
       return;
     }
-    //push room and data
-    const firebaseRoom = getDatabase();
-    const dataRoom = {
+    
+    const db = getDatabase();
+    const roomId = push(child(ref(db), 'rooms/')).key;
+    
+    set(ref(db, '/rooms/' + roomId), {
       title: newRoom,
       authorId: user?.id,
-    };
-    const roomRef = push(child(ref(firebaseRoom), 'rooms/')).key;
-    const updates = {};
-
-    updates['/rooms/' + roomRef] = dataRoom;
-
-    navigate(`/admin/rooms/${roomRef}`);
-
-    return update(ref(firebaseRoom), updates);
+    });
+    navigate(`/admin/rooms/${roomId}`);
   }
 
 

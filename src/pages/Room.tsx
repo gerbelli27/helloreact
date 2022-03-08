@@ -11,7 +11,7 @@ import '../styles/room.css';
 import { useRoom } from '../hooks/useRoom';
 
 type RoomParams = {
-  id: string;
+  id: any;
 }
 
 export function Room() {
@@ -52,7 +52,7 @@ export function Room() {
           content: newQuestion,
           author: {
             name: user!.name,
-            avatar: user.avatar,
+            avatar: user!.avatar,
           },
           isHighlighted: false,
           isAnswered: false,

@@ -12,21 +12,21 @@ import '../styles/room.css';
 import { useRoom } from '../hooks/useRoom';
 import { Button } from '../components/Button';
 import { getDatabase, ref, remove, update } from "firebase/database";
-import { useEffect } from "react";
-
 
 
 type RoomParams = {
-  id: string;
+  id: any;
 }
 
 export function AdminRoom() {
-
-  const params = useParams<RoomParams>();
+  
+  const navigate = useNavigate();
+  const params = useParams<RoomParams>()
   const roomId = params.id;
   const { title, questions } = useRoom(roomId)
+  
   const db = getDatabase();
-  const navigate = useNavigate();
+  
 
   async function handleEndRoom(){
     
