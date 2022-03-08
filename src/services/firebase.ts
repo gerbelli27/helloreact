@@ -1,6 +1,7 @@
-import { initializeApp, getApp } from "firebase/app";
+import { initializeApp } from "firebase/app"
 import { getDatabase } from "firebase/database";
 import { getAuth } from "firebase/auth";
+import firebase from "firebase/compat/app"
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_AP_API_KEY,
@@ -12,7 +13,7 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_AP_APP_ID,
 };
 
-  initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
 const auth = getAuth();
 const database = getDatabase();
