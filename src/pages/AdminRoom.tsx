@@ -96,7 +96,7 @@ textColor='#fff' backgroundColor='#a48af5' effect='solid'/>
               >
                 {!question.isAnswered && (
                    <>
-                    <ReactTooltip id='custom-color-no-arrow' className='custom-color-no-arrow' delayHide={1000}
+                    <ReactTooltip id='custom-color-no-arrow' className='custom-color-no-arrow' 
 textColor='#fff' backgroundColor='#a48af5' effect='solid'/>
                    {question.likeCount > 0 && <span>{question.likeCount}</span>}
                    <img src={ likeImg } alt="number of likes" />
@@ -112,7 +112,7 @@ textColor='#fff' backgroundColor='#a48af5' effect='solid'/>
                  </button>
                  </>
                 )}
-                 <ReactTooltip id='custom-color-no-arrow' className='custom-color-no-arrow' delayHide={1000}
+                 <ReactTooltip id='custom-color-no-arrow' className='custom-color-no-arrow'
 textColor='#fff' backgroundColor='#a48af5' effect='solid'/>
                 <button type="button"
                   data-for='custom-color-no-arrow' data-tip='Remove question'
