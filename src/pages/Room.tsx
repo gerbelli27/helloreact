@@ -22,6 +22,11 @@ export function Room() {
   const { title, questions } = useRoom(roomId);
   const db = getDatabase();
 
+  function logIn() {
+    if (!user) {
+      signInWithGoogle();
+    }
+  }
 
   async function handleLikeQuestions(likeId: string | undefined, questionId: string) {
     if (likeId) {
@@ -95,7 +100,7 @@ export function Room() {
                 <img src={user.avatar} alt={user.name} />
                 <span className="username">{user.name}</span>
               </div>
-            ) : (<span className="username1"><a className="log-in" onClick={signInWithGoogle}>Log in</a>to ask questions</span>)}
+            ) : (<span className="username1"><a className="log-in" onClick={logIn}>Log in</a>to ask questions</span>)}
             <button className="btn" type="submit" disabled={!user} >Send question</button>
           </div>
         </form>
