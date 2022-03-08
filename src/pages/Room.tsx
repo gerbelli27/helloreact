@@ -15,7 +15,7 @@ type RoomParams = {
 }
 
 export function Room() {
-  const { user } = useAuth();
+  const { user, signInWithGoogle } = useAuth();
   const params = useParams<RoomParams>();
   const [newQuestion, setNewQuestion] = useState('');
   const roomId = params.id;
@@ -95,7 +95,7 @@ export function Room() {
                 <img src={user.avatar} alt={user.name} />
                 <span className="username">{user.name}</span>
               </div>
-            ) : (<span className="username1"><a className="log-in">Log in</a>to ask questions</span>)}
+            ) : (<span className="username1"><a className="log-in" onClick={signInWithGoogle}>Log in</a>to ask questions</span>)}
             <button className="btn" type="submit" disabled={!user} >Send question</button>
           </div>
         </form>
